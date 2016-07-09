@@ -1,29 +1,30 @@
 {
-  "name": "credit-card",
-  "version": "2.0.0",
+  "name": "credit-card-es6",
+  "version": "3.0.0",
   "description": "credit card validation",
   "author": "Continuation Labs <contact@continuation.io> (http://continuation.io/)",
+  "maintainers": [
+    "Eser Ozvataf <eser@ozvataf.com>"
+  ],
   "main": "lib/index.js",
-  "homepage": "https://github.com/continuationlabs/credit-card",
+  "homepage": "https://github.com/eserozvataf/credit-card",
   "repository": {
     "type": "git",
-    "url": "https://github.com/continuationlabs/credit-card"
+    "url": "https://github.com/eserozvataf/credit-card"
   },
   "bugs": {
-    "url": "https://github.com/continuationlabs/credit-card/issues"
+    "url": "https://github.com/eserozvataf/credit-card/issues"
   },
   "license": "MIT",
   "scripts": {
-    "test": "belly-button && lab -v -t 100 -a code"
+    "test": "lab -v -t 100 -a code"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "reach": "1.x.x"
   },
   "devDependencies": {
-    "belly-button": "1.x.x",
     "code": "2.x.x",
     "lab": "8.x.x"
   },
