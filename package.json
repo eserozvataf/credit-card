@@ -1,19 +1,19 @@
 {
   "name": "credit-card-es6",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "credit card validation",
   "author": "Continuation Labs <contact@continuation.io> (http://continuation.io/)",
   "maintainers": [
     "Eser Ozvataf <eser@ozvataf.com>"
   ],
   "main": "lib/index.js",
-  "homepage": "https://github.com/eserozvataf/credit-card",
+  "homepage": "https://github.com/eserozvataf/credit-card-es6",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eserozvataf/credit-card"
+    "url": "https://github.com/eserozvataf/credit-card-es6"
   },
   "bugs": {
-    "url": "https://github.com/eserozvataf/credit-card/issues"
+    "url": "https://github.com/eserozvataf/credit-card-es6/issues"
   },
   "license": "MIT",
   "scripts": {
