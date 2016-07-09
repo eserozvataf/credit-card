@@ -1,4 +1,5 @@
 'use strict';
+
 const Code = require('code');
 const Lab = require('lab');
 const CreditCard = require('../');
@@ -25,33 +26,6 @@ describe('CreditCard', () => {
         cvv: '123'
       };
       const validation = CreditCard.validate(card);
-
-      expect(validation.card).to.deep.equal(card);
-      expect(validation.validCardNumber).to.equal(true);
-      expect(validation.validExpiryMonth).to.equal(true);
-      expect(validation.validExpiryYear).to.equal(true);
-      expect(validation.validCvv).to.equal(true);
-      expect(validation.isExpired).to.equal(false);
-      expect(validation.customValidation).to.not.exist();
-      done();
-    });
-
-    it('validates a card using a custom schema', (done) => {
-      const schema = {
-        cardType: 'type',
-        number: 'number',
-        expiryMonth: 'expire_month',
-        expiryYear: 'expire_year',
-        cvv: 'cvv2'
-      };
-      const card = {
-        type: 'visa',
-        number: '4111111111111111',
-        expire_month: '03',
-        expire_year: '2100',
-        cvv2: '123'
-      };
-      const validation = CreditCard.validate(card, { schema });
 
       expect(validation.card).to.deep.equal(card);
       expect(validation.validCardNumber).to.equal(true);
@@ -144,28 +118,28 @@ describe('CreditCard', () => {
 
     it('defines a new card type', (done) => {
       const card1 = {
-        cardType: 'VISA',
+        names: [ 'VISA' ],
         number: '4111111111111111',
         expiryMonth: '03',
         expiryYear: '2100',
         cvv: '123'
       };
       const card2 = {
-        cardType: 'GIFT_CARD',
+        names: [ 'GIFT_CARD' ],
         number: '4111111111111111',
         expiryMonth: '03',
         expiryYear: '2100',
         pin: '7890'
       };
       const options = {
-        cardTypes: {
-          GIFT_CARD: {
+        cardTypes: [
+          {
             cardPattern: /^4[0-9]{12}(?:[0-9]{3})?$/,
             cvvPattern: /.*/
           }
-        },
+        ],
         customValidation: (card, settings) => {
-          if (card.cardType === 'GIFT_CARD') {
+          if (card.names.indexOf('GIFT_CARD') >= 0) {
             return card.pin === '7890';
           }
         }
@@ -545,35 +519,6 @@ describe('CreditCard', () => {
       const updated = CreditCard.defaults({}, false);
 
       expect(original).to.deep.equal(updated);
-      done();
-    });
-
-    it('sets a custom schema', (done) => {
-      const schema = {
-        cardType: 'type',
-        number: 'number',
-        expiryMonth: 'expire_month',
-        expiryYear: 'expire_year',
-        cvv: 'cvv2'
-      };
-      const card = {
-        type: 'visa',
-        number: '4111111111111111',
-        expire_month: '03',
-        expire_year: '2100',
-        cvv2: '123'
-      };
-
-      CreditCard.defaults({ schema });
-      const validation = CreditCard.validate(card);
-
-      expect(validation.card).to.deep.equal(card);
-      expect(validation.validCardNumber).to.equal(true);
-      expect(validation.validExpiryMonth).to.equal(true);
-      expect(validation.validExpiryYear).to.equal(true);
-      expect(validation.validCvv).to.equal(true);
-      expect(validation.isExpired).to.equal(false);
-      expect(validation.customValidation).to.not.exist();
       done();
     });
   });
